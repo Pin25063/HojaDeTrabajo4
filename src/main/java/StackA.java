@@ -7,7 +7,7 @@
 
 import java.util.ArrayList;
 
-public class StackA<T> implements Stack<T>{
+public class StackA<T> extends AbstractStack<T>{
     
     ArrayList<T> stack;
 
@@ -20,14 +20,14 @@ public class StackA<T> implements Stack<T>{
     }
 
     public T pop() {
-        if (stack.size() == 0){
+        if (stack.isEmpty()){
             return null;
         }
         return stack.remove(stack.size() - 1);
     }
 
     public T peek() {
-        if (stack.size() == 0){
+        if (stack.isEmpty()){
             return null;
         }
         return stack.get(stack.size() - 1);

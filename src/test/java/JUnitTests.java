@@ -6,6 +6,7 @@
  */
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,9 +17,10 @@ public class JUnitTests {
     Calc calculadora;
 
     @Before
-    public void setup(){
-        stack = new StackO<>();
-        calculadora = new Calculator();
+    public void setup() {
+        StackFactory factory = new StackFactory();
+        stack = factory.generateStack("vector");
+        calculadora = new Calculator("vector");
     }
 
     @Test
@@ -45,12 +47,12 @@ public class JUnitTests {
 
     @Test
     public void popOnEmptyStackReturnsNull() {
-        assertEquals(null, stack.pop());
+        assertNull(stack.pop());
     }
 
     @Test
     public void peekOnEmptyStackReturnsNull() {
-        assertEquals(null, stack.peek());
+        assertNull(stack.peek());
     }
 
     @Test (expected = ArithmeticException.class)
@@ -64,12 +66,8 @@ public class JUnitTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void invalidOperatorThrowsException() {
-        calculadora.operate("1 2 x");
-    }
+    public void invalidOperatorThrowsException() { calculadora.operate("1 2 x"); }
 
     @Test(expected = IllegalArgumentException.class)
-    public void invalidPostfixExpressionThrowsException() {
-        calculadora.operate("1 2 3 +");
-    }
+    public void invalidPostfixExpressionThrowsException() { calculadora.operate("1 2 3 +"); }
 }

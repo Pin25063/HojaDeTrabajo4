@@ -7,6 +7,10 @@
  */
 
 public class Calculator implements Calc{
+    String type;
+    public Calculator(String type){
+        this.type = type;
+    }
     /**
      * Evalúa la expresión
      * 
@@ -25,13 +29,14 @@ public class Calculator implements Calc{
      */
     @Override
     public double operate (String input){
-        
+        StackFactory factory = new StackFactory();
+
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("La entrada no puede estar vacía");
         }
 
-        Stack<Double> stack = new StackO<>();
-        //PilaArrayList<Double> stack = new StackA<>();
+        AbstractStack<Double> stack = factory.generateStack(type);
+
         String[] expression = input.split(" ");
 
         for (int i = 0; i < expression.length; i++){

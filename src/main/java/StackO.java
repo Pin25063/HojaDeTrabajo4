@@ -7,7 +7,7 @@
 
 import java.util.Vector;
 
-public class StackO<T> implements Stack<T> { 
+public class StackO<T> extends AbstractStack<T> {
     
     Vector<T> stack; 
 
@@ -24,7 +24,7 @@ public class StackO<T> implements Stack<T> {
         return stack.remove(stack.size() - 1);
     }
 
-    public T peek() { 
+    public T peek() {
         if (stack.isEmpty()) return null; 
         return stack.lastElement();
     }    

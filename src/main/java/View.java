@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class View {
     
-    public Scanner scanner;
+    public static Scanner scanner;
 
     public View() {
         this.scanner = new Scanner(System.in);
@@ -15,5 +15,10 @@ public class View {
 
     public void showMessage(String message) {
         System.out.println(message);
+    }
+
+    public static String askCase(){
+        System.out.println("Ingresse el tipo de Stack que desea utilizar (vector/lista):");
+        return scanner.nextLine();
     }
 }
