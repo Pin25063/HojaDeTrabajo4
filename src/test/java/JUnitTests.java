@@ -20,7 +20,7 @@ public class JUnitTests {
     public void setup() {
         StackFactory factory = new StackFactory();
         stack = factory.generateStack("vector", null);
-        calculadora = new Calculator("vector", null);
+        calculadora = Calculator.getInstance("vector", null);
     }
 
     @Test
@@ -70,4 +70,31 @@ public class JUnitTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void invalidPostfixExpressionThrowsException() { calculadora.operate("1 2 3 +"); }
+
+    @Test
+    public void factoryCreatesStackListSimple() {
+        StackFactory factory = new StackFactory();
+        AbstractStack<Double> stack = factory.generateStack("lista", "simple");
+        assertEquals(StackL.class, stack.getClass());
+    }
+
+    @Test
+    public void factoryCreatesStackListDouble() {
+        StackFactory factory = new StackFactory();
+        AbstractStack<Double> stack = factory.generateStack("lista", "doble");
+        assertEquals(StackL.class, stack.getClass());
+    }
+
+    @Test
+    public void factoryInvalidTypeReturnsNull() {
+        StackFactory factory = new StackFactory();
+        AbstractStack<Double> stack = factory.generateStack("invalido", null);
+        assertNull(stack);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void emptyExpressionThrowsException() {
+        Calc calc = Calculator.getInstance("vector", null);
+        calc.operate("");
+    }
 }
