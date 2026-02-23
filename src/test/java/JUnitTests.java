@@ -19,8 +19,8 @@ public class JUnitTests {
     @Before
     public void setup() {
         StackFactory factory = new StackFactory();
-        stack = factory.generateStack("vector");
-        calculadora = new Calculator("vector");
+        stack = factory.generateStack("vector", null);
+        calculadora = new Calculator("vector", null);
     }
 
     @Test

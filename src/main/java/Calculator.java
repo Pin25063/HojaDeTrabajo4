@@ -10,10 +10,18 @@ public class Calculator implements Calc{
     private static Calculator instance = null;
     private String stackType;
     private String listType;
+    private AbstractStack<Double> stack;
 
     private Calculator(String stackType, String listType){
         this.stackType = stackType;
         this.listType = listType;
+
+        StackFactory factory = new StackFactory();
+        stack = factory.generateStack(stackType, listType);
+
+        if (stack == null) {
+            throw new IllegalArgumentException("Tipo de stack o lista inválido");
+        }
     }
 
     public static Calculator getInstance(String stackType, String listType){
@@ -42,10 +50,6 @@ public class Calculator implements Calc{
     public double operate (String input){
         StackFactory factory = new StackFactory();
         AbstractStack<Double> stack = factory.generateStack(stackType, listType);
-
-        if (stack == null) {
-            throw new IllegalArgumentException("Tipo de stack o lista inválido");
-        }
 
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("La entrada no puede estar vacía");

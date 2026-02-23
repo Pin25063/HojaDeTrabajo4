@@ -22,7 +22,13 @@ public class Main {
             listType = View.askListType();
         }
 
-        Calc calculadora = Calculator.getInstance(stackType, listType);
+        Calc calculadora;
+        try {
+            calculadora = Calculator.getInstance(stackType, listType);
+        } catch (IllegalArgumentException e){
+            vista.showMessage(e.getMessage());
+            return;
+        }
 
         try (
                 FileReader fileReader = new FileReader("src/main/resources/datos.txt");
