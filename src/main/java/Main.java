@@ -16,8 +16,14 @@ public class Main {
     public static void main(String[] args) {
         View vista = new View();
 
-        String type = View.askCase();
-        Calc calculadora = new Calculator(type);
+        String stackType = View.askCase();
+        String listType = null;
+        if (stackType.equalsIgnoreCase("lista")) {
+            listType = View.askListType();
+        }
+        
+        Calc calculadora = new Calculator(stackType, listType);
+
 
         try (
                 FileReader fileReader = new FileReader("src/main/resources/datos.txt");

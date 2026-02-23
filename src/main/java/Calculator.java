@@ -7,9 +7,11 @@
  */
 
 public class Calculator implements Calc{
-    String type;
-    public Calculator(String type){
-        this.type = type;
+    String stackType;
+    String listType;
+    public Calculator(String stackType, String listType){
+        this.stackType = stackType;
+        this.listType = listType;
     }
     /**
      * Evalúa la expresión
@@ -30,12 +32,15 @@ public class Calculator implements Calc{
     @Override
     public double operate (String input){
         StackFactory factory = new StackFactory();
+        AbstractStack<Double> stack = factory.generateStack(stackType, listType);
+
+        if (stack == null) {
+            throw new IllegalArgumentException("Tipo de stack o lista inválido");
+        }
 
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("La entrada no puede estar vacía");
         }
-
-        AbstractStack<Double> stack = factory.generateStack(type);
 
         String[] expression = input.split(" ");
 

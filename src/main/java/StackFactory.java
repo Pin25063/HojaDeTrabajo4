@@ -1,10 +1,32 @@
 public class StackFactory {
 
-    public AbstractStack<Double> generateStack(String type){
-        return switch (type) {
-            case "vector" -> new StackO<>();
-            case "lista" -> new StackA<>();
-            default -> null;
-        };
+    public AbstractStack<Double> generateStack(String stackType, String listType){
+        AbstractStack<Double> stack = null;
+
+        switch(stackType.toLowerCase()) {
+            case "vector":
+                stack = new StackO<>();
+                break;
+            case "arraylist":
+                stack = new StackA<>();
+                break;
+            case "lista":
+                List<Double> list = null;
+                if (listType != null) {
+                    if (listType.equalsIgnoreCase("simple")) {
+                        list = new SimpleLinkedList<>();
+                    } else if (listType.equalsIgnoreCase("doble")) {
+                        list = new DoubleLinkedList<>();
+                    }
+                }
+                if (list != null) {
+                    stack = new StackL<>(list);
+                }
+                break;
+            default:
+                stack = null;
+        }
+
+        return stack;
     }
 }

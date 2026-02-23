@@ -1,0 +1,5 @@
+public abstract class AbstractList<T> implements List<T> {
+    public abstract void add(T element);
+    public abstract T remove();
+    public abstract T get();
+}
