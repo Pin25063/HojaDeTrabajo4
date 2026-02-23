@@ -7,11 +7,20 @@
  */
 
 public class Calculator implements Calc{
-    String stackType;
-    String listType;
-    public Calculator(String stackType, String listType){
+    private static Calculator instance = null;
+    private String stackType;
+    private String listType;
+
+    private Calculator(String stackType, String listType){
         this.stackType = stackType;
         this.listType = listType;
+    }
+
+    public static Calculator getInstance(String stackType, String listType){
+        if (instance == null) {
+            instance     = new Calculator(stackType, listType);
+        }
+        return instance;
     }
     /**
      * Evalúa la expresión

@@ -21,9 +21,8 @@ public class Main {
         if (stackType.equalsIgnoreCase("lista")) {
             listType = View.askListType();
         }
-        
-        Calc calculadora = new Calculator(stackType, listType);
 
+        Calc calculadora = Calculator.getInstance(stackType, listType);
 
         try (
                 FileReader fileReader = new FileReader("src/main/resources/datos.txt");
