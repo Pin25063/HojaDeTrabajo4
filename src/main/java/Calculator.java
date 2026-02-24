@@ -2,7 +2,17 @@ import java.util.ArrayList;
 
 /**
  * Implementación de una calculadora para expreciones postfix
-
+ *
+ * Permite convertir expresiones infix a postfix para su evaluación
+ * y evalua el orden de precedencia de los operandos
+ *
+ * Precondiciones:
+ * - Los operandos deben de ser numeros válidos
+ * - Las operaciones deben de usar operandos soportados
+ *
+ * Postcondiciones:
+ * - Las operaciones dejan la pila vacía después de evaluarse
+ * - Los métodos retornan el resultado de la operación o la operación transformada correctamente
  * 
  * @author Jose Pinto 25063
  * @author Valeria Hernández 25086
@@ -98,22 +108,29 @@ public class Calculator implements Calc{
             }
         }
         
-        double result;
-        try {
-            result = stack.pop(); //verifica que haya un resultado
-        } catch (Exception c) { 
+        Double result = stack.pop();
+        if (result == null) {
             throw new IllegalArgumentException("Operación inválida");
         }
 
-        try {
-            stack.pop(); //verifica que no sobre ningun operando
+        if(stack.pop() != null) { //verifica que no hayan operandos extra
             throw new IllegalArgumentException("Operación inválida");
-        } catch (Exception x) {
         }
             
         return result;
     }
 
+    /**
+     * Convierte una expresión de notación infix a postfix
+     *
+     * Precondiciones:
+     * - input no debe ser null ni vacío.
+     * - Los operandos deben ser números enteros simples.
+     * - Los operadores soportados son +, -, *, / y ^.
+     *
+     * Postcondiciones:
+     * - Retorna la expresión en formato postfix
+     */
     public String infixToPostfix(String input) {
         StackFactory factory = new StackFactory();
         StackA<String> stack = new StackA<>();
@@ -152,6 +169,11 @@ public class Calculator implements Calc{
         return String.join(" ", out);
     }
 
+    /**
+     * Devuelve la precedencia de un operador.
+     * @param op operador (+, -, *, /, ^)
+     * @return valor de precedencia (mayor número = mayor precedencia)
+     */
     public static int precedence(String op) {
         return switch (op) {
             case "+", "-" -> 1;

@@ -1,3 +1,10 @@
+/**
+ * Implementación de nodo para lista doblemente encadenada
+ *
+ * @author Jose Pinto 25063
+ * @author Valeria Hernández 25086
+ */
+
 public class DoubleNode<T> {
     T value;
     DoubleNode<T> next;

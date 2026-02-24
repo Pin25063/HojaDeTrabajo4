@@ -1,3 +1,10 @@
+/**
+ * Implementación Stack utilizando listas
+ *
+ * @author Jose Pinto 25063
+ * @author Valeria Hernández 25086
+ */
+
 public class StackL<T> extends AbstractStack<T> {
     private List<T> list;
 

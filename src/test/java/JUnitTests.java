@@ -97,4 +97,24 @@ public class JUnitTests {
         Calc calc = Calculator.getInstance("vector", null);
         calc.operate("");
     }
+
+    @Test
+    public void stackSimpleListBehavesAsLIFO() {
+        StackFactory factory = new StackFactory();
+        Stack<Double> s = factory.generateStack("lista", "simple");
+        s.push(1.0);
+        s.push(2.0);
+        s.push(3.0);
+        assertEquals(3.0, s.pop(), 0.0);
+    }
+
+    @Test
+    public void stackDobleListBehavesAsLIFO() {
+        StackFactory factory = new StackFactory();
+        Stack<Double> s = factory.generateStack("lista", "doble");
+        s.push(1.0);
+        s.push(2.0);
+        s.push(3.0);
+        assertEquals(3.0, s.pop(), 0.0);
+    }
 }

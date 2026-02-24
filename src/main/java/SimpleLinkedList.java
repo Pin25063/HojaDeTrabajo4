@@ -1,3 +1,10 @@
+/**
+ * Implementación de lista doblemente encadenada
+ *
+ * @author Jose Pinto 25063
+ * @author Valeria Hernández 25086
+ */
+
 public class SimpleLinkedList<T> extends AbstractList<T> {
     private Node<T> first;
     

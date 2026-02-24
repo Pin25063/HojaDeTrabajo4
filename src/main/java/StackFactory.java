@@ -1,3 +1,11 @@
+/**
+ * Class factory para determinar que tipo de Stack se instancia
+ * dependiendo del input del usuario
+ *
+ * @author Jose Pinto 25063
+ * @author Valeria Hernández 25086
+ */
+
 public class StackFactory {
 
     public AbstractStack<Double> generateStack(String stackType, String listType){

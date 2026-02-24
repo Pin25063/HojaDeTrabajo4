@@ -1,3 +1,11 @@
+/**
+ * Implementación de nodo para lista simplemente encadenada
+ *
+ * @author Jose Pinto 25063
+ * @author Valeria Hernández 25086
+ */
+
+
 public class Node<T> {
     private T value;
     private Node<T> next;
