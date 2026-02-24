@@ -21,4 +21,5 @@ public interface Calc {
 
      */
     public double operate (String input);
+    public String infixToPostfix(String input);
 }

@@ -38,8 +38,9 @@ public class Main {
             while ((line = bufferReader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     try {
-                        double result = calculadora.operate(line);
-                        vista.showMessage(line + " = " + result);
+                        String input = calculadora.infixToPostfix(line);
+                        double result = calculadora.operate(input);
+                        vista.showMessage("Infix: " + line + "; Postfix: " + input + " = " + result);
 
                     } catch (Exception e) {
                         vista.showMessage(line + " Error: " + e.getMessage());

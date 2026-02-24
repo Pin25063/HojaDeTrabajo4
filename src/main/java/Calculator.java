@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Implementación de una calculadora para expreciones postfix
 
@@ -110,5 +112,52 @@ public class Calculator implements Calc{
         }
             
         return result;
+    }
+
+    public String infixToPostfix(String input) {
+        StackFactory factory = new StackFactory();
+        StackA<String> stack = new StackA<>();
+
+        input = input.replace(" ", "");
+        String[] infix = input.split("");
+        ArrayList<String> out = new ArrayList();
+
+        stack.push("#");
+        for (String token : infix) {
+            try {
+                int number = Integer.parseInt(token);
+                out.add(String.valueOf(number));
+            } catch (NumberFormatException e) {
+                if (token.equals("(")) {
+                    stack.push("(");
+                } else if (token.equals(")")) {
+                    while (!stack.isEmpty() && !stack.peek().equals("(")) {
+                        out.add(stack.pop());
+                    }
+                    stack.pop();
+                } else {
+                    while (!stack.isEmpty() && precedence(token) <= precedence(stack.peek())) {
+                        out.add(stack.pop());
+                    }
+                    stack.push(token);
+                }
+            }
+        }
+        while (!stack.isEmpty()){
+            String top = stack.pop();
+            if (!top.equals("#") && !top.equals("(")) {
+                out.add(top);
+            }
+        }
+        return String.join(" ", out);
+    }
+
+    public static int precedence(String op) {
+        return switch (op) {
+            case "+", "-" -> 1;
+            case "*", "/" -> 2;
+            case "^" -> 3;
+            default -> 0;
+        };
     }
 }
